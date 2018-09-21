@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 /**
  * Plugin main class
  */
