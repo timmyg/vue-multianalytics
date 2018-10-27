@@ -28,9 +28,12 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         query: {
-          presets: [ 'env', 'stage-2' ]
+          presets: [ 'env', 'stage-2' ],
+          plugins: [
+            "transform-async-to-generator",
+            "transform-object-assign",
+          ],
         },
-        plugins: ["transform-object-assign"],
         exclude: /node_modules/
       }
     ]
