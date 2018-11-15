@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 /**
  * Plugin main class
  */
@@ -163,14 +165,13 @@ export default class AnalyticsPlugin {
                   *
                   * @param {any} properties - The user properties
                   */
-                 async setUserProperties (properties = {}, excludedModules = []) {
+                 setUserProperties (properties = {}, excludedModules = []) {
                    const modulesToExecute = this.modulesEnabled.filter(moduleToCheck => excludedModules.indexOf(moduleToCheck.name) === -1);
-                   const response = await Promise.all(modulesToExecute.map(
-                       module => {
-                         return module.setUserProperties(properties)
-                       }
-                     ));
-                   return response;
+                   return Promise.all(modulesToExecute.map(
+                     module => {
+                       return module.setUserProperties(properties)
+                     }
+                   ));
                  }
 
                  /**
@@ -178,16 +179,15 @@ export default class AnalyticsPlugin {
                   *
                   * @param {any} properties - The user properties once
                   */
-                 async setUserPropertiesOnce(properties = {}, excludedModules = []) {
+                 setUserPropertiesOnce(properties = {}, excludedModules = []) {
                    const modulesToExecute = this.modulesEnabled.filter(moduleToCheck => excludedModules.indexOf(moduleToCheck.name) === -1);
-                   const response = await Promise.all(modulesToExecute.map(
-                       module => {
-                         return module.setUserPropertiesOnce(
-                           properties
-                         );
-                       }
-                     ));
-                   return response;
+                   return Promise.all(modulesToExecute.map(
+                     module => {
+                       return module.setUserPropertiesOnce(
+                         properties
+                       );
+                     }
+                   ));
                  }
 
                  /**
@@ -222,14 +222,13 @@ export default class AnalyticsPlugin {
                   * @param {string} userId - The unique ID of the user
                   * @param {object} options - Options to add
                   */
-                 async identify(params = {}, excludedModules = []) {
+                 identify(params = {}, excludedModules = []) {
                    const modulesToExecute = this.modulesEnabled.filter(moduleToCheck => excludedModules.indexOf(moduleToCheck.name) === -1);
-                   const response = await Promise.all(modulesToExecute.map(
-                       module => {
-                         return module.identify(params);
-                       }
-                     ));
-                   return response;
+                   return Promise.all(modulesToExecute.map(
+                     module => {
+                       return module.identify(params);
+                     }
+                   ));
                  }
 
                  /**
@@ -249,13 +248,12 @@ export default class AnalyticsPlugin {
                   * Resets the id & clears cache
                   *
                   */
-                 async reset(excludedModules = []) {
+                 reset(excludedModules = []) {
                    const modulesToExecute = this.modulesEnabled.filter(moduleToCheck => excludedModules.indexOf(moduleToCheck.name) === -1);
-                   const response = await Promise.all(modulesToExecute.map(
-                       module => {
-                         return module.reset();
-                       }
-                     ));
-                   return response;
+                   return Promise.all(modulesToExecute.map(
+                     module => {
+                       return module.reset();
+                     }
+                   ));
                  }
                }
