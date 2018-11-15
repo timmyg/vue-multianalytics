@@ -65,12 +65,17 @@ const install = function (Vue, initConf = {}, mixin) {
 
   // Add to vue prototype and also from globals
   const analyticsPlugin = new AnalyticsPlugin(Vue.modulesEnabled)
-  Vue.prototype.$multianalytics = Vue.prototype.$ma = Vue.ma = analyticsPlugin
 
-
-  // User can add its own implementation of an interface
-  if (mixin) {
-    Vue.prototype.$multianalyticsm =  Vue.prototype.$mam = Vue.mam =  mixin(analyticsPlugin)
+  if (!initConf.returnModule) {
+      Vue.prototype.$multianalytics = Vue.prototype.$ma = Vue.ma = analyticsPlugin
+    
+    
+      // User can add its own implementation of an interface
+      if (mixin) {
+        Vue.prototype.$multianalyticsm =  Vue.prototype.$mam = Vue.mam =  mixin(analyticsPlugin)
+      }
+  } else {
+    return mixin ? mixin(analyticsPlugin) : analyticsPlugin
   }
 
 }

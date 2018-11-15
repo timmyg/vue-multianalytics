@@ -147,11 +147,16 @@ module.exports =
 
 	  // Add to vue prototype and also from globals
 	  var analyticsPlugin = new _AnalyticsPlugin2.default(Vue.modulesEnabled);
-	  Vue.prototype.$multianalytics = Vue.prototype.$ma = Vue.ma = analyticsPlugin;
 
-	  // User can add its own implementation of an interface
-	  if (mixin) {
-	    Vue.prototype.$multianalyticsm = Vue.prototype.$mam = Vue.mam = mixin(analyticsPlugin);
+	  if (!initConf.returnModule) {
+	    Vue.prototype.$multianalytics = Vue.prototype.$ma = Vue.ma = analyticsPlugin;
+
+	    // User can add its own implementation of an interface
+	    if (mixin) {
+	      Vue.prototype.$multianalyticsm = Vue.prototype.$mam = Vue.mam = mixin(analyticsPlugin);
+	    }
+	  } else {
+	    return mixin ? mixin(analyticsPlugin) : analyticsPlugin;
 	  }
 	};
 
@@ -1838,7 +1843,8 @@ module.exports =
 	      mandatoryParams.forEach(function (el) {
 	        if (!initConf[el]) throw new Error('VueMultianalytics : Please provide a "' + el + '" from the config.');
 	      });
-	      window.mParticle = { config: { isDevelopmentMode: initConf.debug } };
+	      var config = { isDevelopmentMode: initConf.debug };
+	      window.mParticle = { config: config };
 
 	      // name of gloval variable changed from analytics to segment
 	      (function (apiKey) {

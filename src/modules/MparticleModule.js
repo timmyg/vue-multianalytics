@@ -17,7 +17,8 @@ export default class MparticleModule extends BasicModule {
                    mandatoryParams.forEach(el => {
                      if (!initConf[el]) throw new Error(`VueMultianalytics : Please provide a "${el}" from the config.`);
                    });
-                   window.mParticle = { config: { isDevelopmentMode: initConf.debug } };
+                   let config = { isDevelopmentMode: initConf.debug };
+                   window.mParticle = { config };
 
                    // name of gloval variable changed from analytics to segment
                    (function(apiKey) {

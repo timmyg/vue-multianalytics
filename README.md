@@ -59,6 +59,40 @@ Vue.use(VueMultianalytics, {
 })
 ```
 
+Using nuxt, you can use the flag `returnModule` to get the module and be able to inject it directly in the app as a plugin
+
+```javascript
+import Vue from 'vue'
+import VueMultianalytics from 'vue-multianalytics/dist/vue-multianalytics'
+
+let gaConfig = {
+  appName: 'Test', // Mandatory
+  appVersion: '0.1', // Mandatory
+  trackingId: 'YOUR_UA', // Mandatory
+  debug: true, // Whether or not display console logs debugs (optional)
+}
+
+let mixpanelConfig = {
+  token: 'YOUR_TOKEN'
+}
+
+export default function({ app, store }, inject) {
+  inject(
+    'ma',
+    VueMultianalytics.install(
+      Vue,
+      {
+        modules: {
+          ga: gaConfig,
+          mixpanel: mixpanelConfig
+        },
+        returnModule: true
+      }
+    )
+  )
+}
+```
+
 ## Tracking
 
 Once the configuration is completed, you can access the **vue-multianalytics** instance in your components like that :
