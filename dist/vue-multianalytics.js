@@ -2461,6 +2461,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var OTHER = 8;
+
 	var MparticleModule = function (_BasicModule) {
 	  _inherits(MparticleModule, _BasicModule);
 
@@ -2573,7 +2575,7 @@ module.exports =
 	          category = _ref2$category === undefined ? "Event" : _ref2$category,
 	          action = _ref2.action,
 	          _ref2$eventType = _ref2.eventType,
-	          eventType = _ref2$eventType === undefined ? mParticle.EventType.Other : _ref2$eventType,
+	          eventType = _ref2$eventType === undefined ? OTHER : _ref2$eventType,
 	          _ref2$label = _ref2.label,
 	          label = _ref2$label === undefined ? null : _ref2$label,
 	          _ref2$value = _ref2.value,
@@ -2664,7 +2666,6 @@ module.exports =
 	      return new Promise(function (resolve, reject) {
 	        mParticle.Identity.logout({}, function (result) {
 	          if (result.httpCode === 200) {
-	            console.log(result);
 	            resolve(result);
 	          } else reject(result);
 	        });

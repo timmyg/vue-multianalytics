@@ -2,6 +2,8 @@ import { MODULE_MPARTICLE } from '../analyticsTypes'
 import BasicModule from './BasicModule'
 import { logDebug } from '../utils'
 
+const OTHER = 8
+
 export default class MparticleModule extends BasicModule {
                  constructor() {
                    super(MODULE_MPARTICLE);
@@ -87,7 +89,7 @@ export default class MparticleModule extends BasicModule {
                   * @param {string} label - Useful for categorizing events (e.g. 'Fall Campaign')
                   * @param {integer} value - A numeric value associated with the event (e.g. 42)
                   */
-                 trackEvent({ category = "Event", action, eventType = mParticle.EventType.Other, label = null, value = null, properties = {}, callback = null }) {
+                 trackEvent({ category = "Event", action, eventType = OTHER, label = null, value = null, properties = {}, callback = null }) {
                    if (!mParticle.logEvent) return;
                    try {
                      if (this.config.debug) {
@@ -155,7 +157,6 @@ export default class MparticleModule extends BasicModule {
                    return new Promise ((resolve, reject) => {
                      mParticle.Identity.logout({}, function (result) {
                        if (result.httpCode === 200) {
-                         console.log(result)
                          resolve(result)
                         }
                        else reject(result)
