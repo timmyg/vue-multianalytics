@@ -2621,7 +2621,7 @@ module.exports =
 	          _ref3$currency = _ref3.currency,
 	          currency = _ref3$currency === undefined ? undefined : _ref3$currency;
 
-	      if (!mParticle.eCommerce) return;
+	      if (!mParticle.eCommerce || !mParticle.eCommerce.createProduct) return;
 	      try {
 	        if (this.config.debug) {
 	          _utils.logDebug.apply(undefined, arguments);
