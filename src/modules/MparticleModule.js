@@ -114,7 +114,7 @@ export default class MparticleModule extends BasicModule {
                   * @param {object} attributes - object of attributes related to the event
                   */
                  ecommerceTrackEvent({ productActionType = mParticle.CommerceEventType.ProductAddToCart, product = [], properties = {}, currency = undefined }) {
-                   if (!mParticle.eCommerce) return;
+                   if (!mParticle.eCommerce || !mParticle.eCommerce.createProduct) return;
                    try {
                      if (this.config.debug) {
                        logDebug(...arguments);
