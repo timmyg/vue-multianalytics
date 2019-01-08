@@ -2674,12 +2674,13 @@ module.exports =
 	  }, {
 	    key: 'setUserProperties',
 	    value: function setUserProperties(userParams) {
-	      return new Promise(function (resolve, reject) {
-	        var identityRequest = { userIdentities: userParams };
-	        mParticle.Identity.modify(identityRequest, function (result) {
-	          if (result.httpCode === 200) resolve(result);else reject(result);
-	        });
-	      });
+	      var currentUser = mParticle.Identity.getCurrentUser();
+	      if (!currentUser) {
+	        return null;
+	      }
+	      for (var key in userParams) {
+	        currentUser.setUserAttribute(key, userParams[key]);
+	      }
 	    }
 
 	    /**
