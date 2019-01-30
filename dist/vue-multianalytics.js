@@ -2068,7 +2068,7 @@ module.exports =
 	          };for (var t = 0; t < analytics.methods.length; t++) {
 	            var e = analytics.methods[t];analytics[e] = analytics.factory(e);
 	          }analytics.load = function (t) {
-	            var e = document.createElement("script");e.type = "text/javascript";e.setAttribute('defer', '');e.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";var n = document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e, n);
+	            var e = document.createElement("script");e.type = "text/javascript";e.setAttribute('defer', '');e.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";var n = document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e, n);
 	          };analytics.SNIPPET_VERSION = "4.0.0";
 	        }
 	      })();
@@ -2523,7 +2523,7 @@ module.exports =
 	        var mp = document.createElement("script");
 	        mp.type = "text/javascript";
 	        mp.async = true;
-	        mp.src = ("https:" == document.location.protocol ? "https://jssdkcdns" : "http://jssdkcdn") + ".mparticle.com/js/v2/" + apiKey + "/mparticle.js";
+	        mp.src = "https://jssdkcdns.mparticle.com/js/v2/" + apiKey + "/mparticle.js";
 	        var s = document.getElementsByTagName("script")[0];
 	        s.parentNode.insertBefore(mp, s);
 	      })(initConf.token);

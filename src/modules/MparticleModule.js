@@ -54,7 +54,7 @@ export default class MparticleModule extends BasicModule {
                      var mp = document.createElement("script");
                      mp.type = "text/javascript";
                      mp.async = true;
-                     mp.src = ("https:" == document.location.protocol ? "https://jssdkcdns" : "http://jssdkcdn") + ".mparticle.com/js/v2/" + apiKey + "/mparticle.js";
+                     mp.src = "https://jssdkcdns.mparticle.com/js/v2/" + apiKey + "/mparticle.js";
                      var s = document.getElementsByTagName("script")[0];
                      s.parentNode.insertBefore(mp, s);
                    })(initConf.token);
